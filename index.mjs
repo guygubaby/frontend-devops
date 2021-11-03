@@ -31,12 +31,14 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const bootstrap = () => {
   const appPath = appRoot.path
 
+  const dockerignorePath = path.resolve(__dirname, 'dockerignore')
   const rawPath = path.resolve(__dirname, './raw')
+  
   const targetPath = path.resolve(appPath, 'devops')
 
   tryMkdirSync(targetPath)
   copyDir(rawPath, targetPath)
-  copy(__dirname, appPath)
+  copy(dockerignorePath, path.resolve(appPath, '.dockerignore'))
 }
 
 try {
