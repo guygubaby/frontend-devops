@@ -1,7 +1,7 @@
 {
   "name": "@bryce-loskie/devops",
-  "version": "1.0.4",
-  "description": "An opinionated frontend devops",
+  "version": "1.0.5",
+  "description": "An opinionated frontend devops util",
   "main": "index.mjs",
   "engines": {
     "node": ">=12"
@@ -18,9 +18,23 @@
     "raw",
     "dockerignore"
   ],
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "devops",
+    "docker",
+    "nginx"
+  ],
+  "funding": "https://github.com/sponsors/guygubaby",
+  "author": "guygubaby <guygubaby@gmail.com>",
+  "license": "MIT",
+  "sideEffects": false,
+  "bugs": {
+    "url": "https://github.com/guygubaby/frontend-devops/issues"
+  },
+  "homepage": "https://github.com/guygubaby/frontend-devops#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guygubaby/frontend-devops.git"
+  },
   "devDependencies": {
     "bumpp": "^7.1.1"
   },
