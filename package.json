@@ -1,0 +1,30 @@
+{
+  "name": "@bryce-loskie/devops",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.mjs",
+  "engines": {
+    "node": ">=12"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "release": "bumpp package.json --commit --push --tag",
+    "postinstall": "node index.mjs"
+  },
+  "files": [
+    "index.mjs",
+    "raw",
+    ".dockerignore"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "bumpp": "^7.1.1"
+  },
+  "dependencies": {
+    "app-root-path": "^3.0.0"
+  }
+}
