@@ -1,2 +1,2 @@
-# Opinionated frontend devops
+# An opinionated frontend devops
 
