@@ -1,6 +1,6 @@
 {
   "name": "@bryce-loskie/devops",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "An opinionated frontend devops util",
   "main": "index.mjs",
   "engines": {
@@ -16,8 +16,7 @@
   },
   "files": [
     "index.mjs",
-    "raw",
-    "dockerignore"
+    "raw"
   ],
   "keywords": [
     "devops",
