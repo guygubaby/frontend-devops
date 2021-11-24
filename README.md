@@ -18,7 +18,7 @@ After install will generate `devops` and `scripts` folder and `.dockerignore` in
 
 ```json
 {
-  sciprts: {
+  "sciprts": {
     "prebuild": "node scripts/pre-build.mjs"
   }
 }
