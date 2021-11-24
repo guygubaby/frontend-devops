@@ -24,7 +24,7 @@ After install will generate `devops` and `scripts` folder and `.dockerignore` in
 }
 ```
 
-2. **Optional** If you use `pnpm` as package manager, create `.pnpmrc` and add flowing key into it.
+2. **Optional** If you use `pnpm` as package manager, create `.npmrc` in your project root path and add flowing key into it.
 
 ```.npmrc
 enable-pre-post-scripts=true
