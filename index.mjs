@@ -8,39 +8,42 @@ const tryMkdirSync = (dir) => {
     fs.mkdirSync(dir, { recursive: true })
 }
 
-const copyFile = (src, dest) => {
+const tryCopyFile = (src, dest) => {
   const existed = fs.existsSync(dest)
   if(existed) return
   fs.copyFileSync(src, dest)
 }
 
-const copyDir = (srcDir, destDir) => {
-  tryMkdirSync(destDir)
-  for (const file of fs.readdirSync(srcDir)) {
-    const srcFile = path.resolve(srcDir, file)
-    const destFile = path.resolve(destDir, file)
-    copyFile(srcFile, destFile)
-  }
-}
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+const TargetFolders = ['devops', 'scripts']
+
+const FilenameToPath = {
+  'Dockerfile': 'devops/Dockerfile',
+  'nginx.conf': 'devops/nginx.conf',
+  'pre-build.mjs': 'scripts/pre-build.mjs',
+  'dockerignore': '.dockerignore',
+}
 
 const bootstrap = () => {
   const appPath = appRoot.path
+  const appname = path.basename(appPath)
 
-  const appname = appPath.split('/').pop()
-  if(appname==='frontend-devops') return
+  if(appname==='frontend-devops') return // in current project folder, skip
 
-  const dockerignorePath = path.resolve(__dirname, 'dockerignore')
+  for (const folder of TargetFolders) { 
+    tryMkdirSync(path.resolve(appPath, folder))
+  }
+
   const rawPath = path.resolve(__dirname, './raw')
-  
-  const targetPath = path.resolve(appPath, 'devops')
-  const dockerignoreTargetPath = path.resolve(appPath, '.dockerignore')
 
-  tryMkdirSync(targetPath)
+  for(const file of fs.readdirSync(rawPath)) {
+    const srcFile = path.resolve(rawPath, file)
+    const targetPath = path.resolve(appPath, FilenameToPath[file])
+    tryCopyFile(srcFile, targetPath)
+  }
 
-  copyDir(rawPath, targetPath)
-  copyFile(dockerignorePath, dockerignoreTargetPath)
+  console.log('frontend-devops preflight finished ~');
 }
 
 try {

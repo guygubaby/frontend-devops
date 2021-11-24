@@ -11,7 +11,8 @@
   },
   "scripts": {
     "release": "bumpp package.json --commit --push --tag",
-    "postinstall": "node index.mjs"
+    "postinstall": "node index.mjs",
+    "start": "node index.mjs"
   },
   "files": [
     "index.mjs",

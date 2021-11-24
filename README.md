@@ -10,15 +10,36 @@ pnpm i @bryce-loskie/devops -D
 
 ## Misc
 
-After install will generate `devops` folder and `.dockerignore` in your project working dir
+After install will generate `devops` and `scripts` folder and `.dockerignore` in your project working dir
 
 ## About deployment
 
-```bash
-dockerTag='docker-registory/name:tag'
+1. Add script in `package.json`
 
-docker build -t $dockerTag -f devops/Dockerfile .
-docker run -d --restart unless-stopped -p [port]:80 --name [container-name] $dockerTag
+```json
+{
+  sciprts: {
+    "prebuild": "node scripts/pre-build.mjs"
+  }
+}
+```
+
+2. **Optional** If you use `pnpm` as package manager, create `.pnpmrc` and add flowing key into it.
+
+```.npmrc
+enable-pre-post-scripts=true
+```
+
+3. CI/CD pipline
+
+```bash
+set -e
+
+npx pnpm i && npx pnpm build
+dockerTag=$(cat scripts/tag.txt)
+dockerImage=docker-registory/docker-image-name:${dockerTag}
+docker build -t $dockerImage -f devops/Dockerfile .
+docker push $dockerImage
 ```
 
 ## License
